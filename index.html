@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+  <link rel="stylesheet" href="style.css">
+  <title>Vue ToDo List</title>
+</head>
+<body>
+  
+
+
+  <div id="app" class="container">
+
+    <div class="logo">
+      <img src="img/logo.png" alt="Logo">
+    </div>
+
+    <div class="form">
+      <h4>Attenzione, devi inserire almeno 3 caratteri!</h4>
+      <input 
+        type="text" 
+        placeholder="Inserisci i tuoi impegni"
+        
+        >
+      <button 
+        @click="addToDo(this.strToDo.length > 3)"
+      >Clicca</button>
+    </div>
+
+    <div class="todo-container">
+      <ul>
+        <li
+          v-for="(todo, index) in toDoList"
+          :class="todo.checked ? 'checked' : null"
+          @click="todo.checked = !todo.checked"
+          ><i 
+            class="fas fa-crosshairs"
+            @click.stop="removeToDo(index)"
+            ></i>
+          {{todo.todo}}
+        </li>
+      </ul>
+    </div>
+
+   
+
+     
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
