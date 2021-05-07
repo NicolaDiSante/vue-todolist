@@ -19,14 +19,21 @@
       <img src="img/logo.png" alt="Logo">
     </div>
 
+
     <div class="form">
+
+      <!-- Pongo la condizione per cui se alertActive è true allora appare l'alert -->
       <h4 v-if="alertActive">Attenzione, devi inserire almeno 3 caratteri!</h4>
+
+      <!-- Uso il v-model per inserire la stringa vuota e aggiungo il keyup enter con la funzione che aggiunge il mio input alla lista -->
       <input 
         type="text" 
         placeholder="Inserisci i tuoi impegni"
         v-model="strToDo"
         @keyup.enter="addToDo"
         >
+
+      <!-- Al click richiamo la funzione addToDo che aggiunge alla lista il mio valore -->
       <button 
         @click="addToDo"
 
@@ -35,11 +42,18 @@
 
     <div class="todo-container">
       <ul>
+
+        <!-- Ciclo v-for per stampare la lista
+             Uso il binding per la classe checked
+             Al click utilizzo la formula per il toggle che diventa l'oppoosto di se stesso
+                    -->
         <li
           v-for="(todo, index) in toDoList"
           :class="todo.checked ? 'checked' : null"
           @click="todo.checked = !todo.checked"
-          ><i 
+          >
+          <!-- Utilizzo lo .stop per non far propagare il click -->
+          <i 
             class="fas fa-crosshairs"
             @click.stop="removeToDo(index)"
             ></i>
