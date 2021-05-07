@@ -20,14 +20,16 @@
     </div>
 
     <div class="form">
-      <h4>Attenzione, devi inserire almeno 3 caratteri!</h4>
+      <h4 v-if="alertActive">Attenzione, devi inserire almeno 3 caratteri!</h4>
       <input 
         type="text" 
         placeholder="Inserisci i tuoi impegni"
-        
+        v-model="strToDo"
+        @keyup.enter="addToDo"
         >
       <button 
-        @click="addToDo(this.strToDo.length > 3)"
+        @click="addToDo"
+
       >Clicca</button>
     </div>
 
